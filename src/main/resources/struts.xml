@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<!-- Convention Plugin -->
+	<constant name="struts.convention.default.parent.package" value="elen-rest-default" />
+
+	<package name="elen-default" extends="convention-default">
+		<interceptors>
+			<interceptor-stack name="elenDefaultStack">
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="elenDefaultStack" />
+		
+		<default-class-ref class="com.opensymphony.xwork2.ActionSupport" />
+	</package>
+
+	<package name="elen-rest-default" extends="rest-default">
+		<interceptors>
+			<interceptor-stack name="elenRestDefaultStack">
+				<interceptor-ref name="restDefaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="elenRestDefaultStack" />
+		
+		<default-class-ref class="org.apache.struts2.rest.RestActionSupport" />
+
+		<global-results>
+			<result name="Exception">/exception.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="Exception" />
+		</global-exception-mappings>
+		
+	</package>
+
+</struts>
